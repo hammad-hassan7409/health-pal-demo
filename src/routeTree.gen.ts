@@ -9,38 +9,624 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ReviewsRouteImport } from './routes/reviews'
+import { Route as OnlineConsultationRouteImport } from './routes/online-consultation'
+import { Route as MaintenanceRouteImport } from './routes/maintenance'
+import { Route as FaqsRouteImport } from './routes/faqs'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as ComingSoonRouteImport } from './routes/coming-soon'
+import { Route as AppRouteImport } from './routes/app'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as SplatRouteImport } from './routes/$'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SpecializationsIndexRouteImport } from './routes/specializations.index'
+import { Route as DoctorsIndexRouteImport } from './routes/doctors.index'
+import { Route as DepartmentsIndexRouteImport } from './routes/departments.index'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
+import { Route as LegalTermsRouteImport } from './routes/legal.terms'
+import { Route as LegalRefundRouteImport } from './routes/legal.refund'
+import { Route as LegalPrivacyRouteImport } from './routes/legal.privacy'
+import { Route as DoctorsSearchRouteImport } from './routes/doctors.search'
+import { Route as DoctorsIdRouteImport } from './routes/doctors.$id'
+import { Route as BookSuccessRouteImport } from './routes/book.success'
+import { Route as BookFailedRouteImport } from './routes/book.failed'
+import { Route as BookDoctorIdRouteImport } from './routes/book.$doctorId'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
+import { Route as AuthVerifyOtpRouteImport } from './routes/auth.verify-otp'
+import { Route as AuthSignupRouteImport } from './routes/auth.signup'
+import { Route as AuthResetPasswordRouteImport } from './routes/auth.reset-password'
+import { Route as AuthLoginRouteImport } from './routes/auth.login'
+import { Route as AuthForgotPasswordRouteImport } from './routes/auth.forgot-password'
+import { Route as AppSettingsRouteImport } from './routes/app.settings'
+import { Route as AppReportsRouteImport } from './routes/app.reports'
+import { Route as AppProfileRouteImport } from './routes/app.profile'
+import { Route as AppPaymentsRouteImport } from './routes/app.payments'
+import { Route as AppPatientRouteImport } from './routes/app.patient'
+import { Route as AppNotificationsRouteImport } from './routes/app.notifications'
+import { Route as AppInvoicesRouteImport } from './routes/app.invoices'
+import { Route as AppDoctorRouteImport } from './routes/app.doctor'
+import { Route as AppAdminRouteImport } from './routes/app.admin'
+import { Route as AppPrescriptionsIndexRouteImport } from './routes/app.prescriptions.index'
+import { Route as AppMessagesIndexRouteImport } from './routes/app.messages.index'
+import { Route as AppPrescriptionsIdRouteImport } from './routes/app.prescriptions.$id'
+import { Route as AppMessagesThreadIdRouteImport } from './routes/app.messages.$threadId'
+import { Route as AppConsultationIdRouteImport } from './routes/app.consultation.$id'
 
+const ReviewsRoute = ReviewsRouteImport.update({
+  id: '/reviews',
+  path: '/reviews',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnlineConsultationRoute = OnlineConsultationRouteImport.update({
+  id: '/online-consultation',
+  path: '/online-consultation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MaintenanceRoute = MaintenanceRouteImport.update({
+  id: '/maintenance',
+  path: '/maintenance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqsRoute = FaqsRouteImport.update({
+  id: '/faqs',
+  path: '/faqs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComingSoonRoute = ComingSoonRouteImport.update({
+  id: '/coming-soon',
+  path: '/coming-soon',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppRoute = AppRouteImport.update({
+  id: '/app',
+  path: '/app',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SplatRoute = SplatRouteImport.update({
+  id: '/$',
+  path: '/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SpecializationsIndexRoute = SpecializationsIndexRouteImport.update({
+  id: '/specializations/',
+  path: '/specializations/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DoctorsIndexRoute = DoctorsIndexRouteImport.update({
+  id: '/doctors/',
+  path: '/doctors/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DepartmentsIndexRoute = DepartmentsIndexRouteImport.update({
+  id: '/departments/',
+  path: '/departments/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalTermsRoute = LegalTermsRouteImport.update({
+  id: '/legal/terms',
+  path: '/legal/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalRefundRoute = LegalRefundRouteImport.update({
+  id: '/legal/refund',
+  path: '/legal/refund',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalPrivacyRoute = LegalPrivacyRouteImport.update({
+  id: '/legal/privacy',
+  path: '/legal/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DoctorsSearchRoute = DoctorsSearchRouteImport.update({
+  id: '/doctors/search',
+  path: '/doctors/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DoctorsIdRoute = DoctorsIdRouteImport.update({
+  id: '/doctors/$id',
+  path: '/doctors/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BookSuccessRoute = BookSuccessRouteImport.update({
+  id: '/book/success',
+  path: '/book/success',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BookFailedRoute = BookFailedRouteImport.update({
+  id: '/book/failed',
+  path: '/book/failed',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BookDoctorIdRoute = BookDoctorIdRouteImport.update({
+  id: '/book/$doctorId',
+  path: '/book/$doctorId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthVerifyOtpRoute = AuthVerifyOtpRouteImport.update({
+  id: '/auth/verify-otp',
+  path: '/auth/verify-otp',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthSignupRoute = AuthSignupRouteImport.update({
+  id: '/auth/signup',
+  path: '/auth/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthResetPasswordRoute = AuthResetPasswordRouteImport.update({
+  id: '/auth/reset-password',
+  path: '/auth/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthLoginRoute = AuthLoginRouteImport.update({
+  id: '/auth/login',
+  path: '/auth/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthForgotPasswordRoute = AuthForgotPasswordRouteImport.update({
+  id: '/auth/forgot-password',
+  path: '/auth/forgot-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppSettingsRoute = AppSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppReportsRoute = AppReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppProfileRoute = AppProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPaymentsRoute = AppPaymentsRouteImport.update({
+  id: '/payments',
+  path: '/payments',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPatientRoute = AppPatientRouteImport.update({
+  id: '/patient',
+  path: '/patient',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppNotificationsRoute = AppNotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppInvoicesRoute = AppInvoicesRouteImport.update({
+  id: '/invoices',
+  path: '/invoices',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDoctorRoute = AppDoctorRouteImport.update({
+  id: '/doctor',
+  path: '/doctor',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAdminRoute = AppAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPrescriptionsIndexRoute = AppPrescriptionsIndexRouteImport.update({
+  id: '/prescriptions/',
+  path: '/prescriptions/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppMessagesIndexRoute = AppMessagesIndexRouteImport.update({
+  id: '/messages/',
+  path: '/messages/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPrescriptionsIdRoute = AppPrescriptionsIdRouteImport.update({
+  id: '/prescriptions/$id',
+  path: '/prescriptions/$id',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppMessagesThreadIdRoute = AppMessagesThreadIdRouteImport.update({
+  id: '/messages/$threadId',
+  path: '/messages/$threadId',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppConsultationIdRoute = AppConsultationIdRouteImport.update({
+  id: '/consultation/$id',
+  path: '/consultation/$id',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/$': typeof SplatRoute
+  '/about': typeof AboutRoute
+  '/app': typeof AppRouteWithChildren
+  '/coming-soon': typeof ComingSoonRoute
+  '/contact': typeof ContactRoute
+  '/faqs': typeof FaqsRoute
+  '/maintenance': typeof MaintenanceRoute
+  '/online-consultation': typeof OnlineConsultationRoute
+  '/reviews': typeof ReviewsRoute
+  '/app/admin': typeof AppAdminRoute
+  '/app/doctor': typeof AppDoctorRoute
+  '/app/invoices': typeof AppInvoicesRoute
+  '/app/notifications': typeof AppNotificationsRoute
+  '/app/patient': typeof AppPatientRoute
+  '/app/payments': typeof AppPaymentsRoute
+  '/app/profile': typeof AppProfileRoute
+  '/app/reports': typeof AppReportsRoute
+  '/app/settings': typeof AppSettingsRoute
+  '/auth/forgot-password': typeof AuthForgotPasswordRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/auth/reset-password': typeof AuthResetPasswordRoute
+  '/auth/signup': typeof AuthSignupRoute
+  '/auth/verify-otp': typeof AuthVerifyOtpRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/book/$doctorId': typeof BookDoctorIdRoute
+  '/book/failed': typeof BookFailedRoute
+  '/book/success': typeof BookSuccessRoute
+  '/doctors/$id': typeof DoctorsIdRoute
+  '/doctors/search': typeof DoctorsSearchRoute
+  '/legal/privacy': typeof LegalPrivacyRoute
+  '/legal/refund': typeof LegalRefundRoute
+  '/legal/terms': typeof LegalTermsRoute
+  '/blog/': typeof BlogIndexRoute
+  '/departments/': typeof DepartmentsIndexRoute
+  '/doctors/': typeof DoctorsIndexRoute
+  '/specializations/': typeof SpecializationsIndexRoute
+  '/app/consultation/$id': typeof AppConsultationIdRoute
+  '/app/messages/$threadId': typeof AppMessagesThreadIdRoute
+  '/app/prescriptions/$id': typeof AppPrescriptionsIdRoute
+  '/app/messages/': typeof AppMessagesIndexRoute
+  '/app/prescriptions/': typeof AppPrescriptionsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/$': typeof SplatRoute
+  '/about': typeof AboutRoute
+  '/app': typeof AppRouteWithChildren
+  '/coming-soon': typeof ComingSoonRoute
+  '/contact': typeof ContactRoute
+  '/faqs': typeof FaqsRoute
+  '/maintenance': typeof MaintenanceRoute
+  '/online-consultation': typeof OnlineConsultationRoute
+  '/reviews': typeof ReviewsRoute
+  '/app/admin': typeof AppAdminRoute
+  '/app/doctor': typeof AppDoctorRoute
+  '/app/invoices': typeof AppInvoicesRoute
+  '/app/notifications': typeof AppNotificationsRoute
+  '/app/patient': typeof AppPatientRoute
+  '/app/payments': typeof AppPaymentsRoute
+  '/app/profile': typeof AppProfileRoute
+  '/app/reports': typeof AppReportsRoute
+  '/app/settings': typeof AppSettingsRoute
+  '/auth/forgot-password': typeof AuthForgotPasswordRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/auth/reset-password': typeof AuthResetPasswordRoute
+  '/auth/signup': typeof AuthSignupRoute
+  '/auth/verify-otp': typeof AuthVerifyOtpRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/book/$doctorId': typeof BookDoctorIdRoute
+  '/book/failed': typeof BookFailedRoute
+  '/book/success': typeof BookSuccessRoute
+  '/doctors/$id': typeof DoctorsIdRoute
+  '/doctors/search': typeof DoctorsSearchRoute
+  '/legal/privacy': typeof LegalPrivacyRoute
+  '/legal/refund': typeof LegalRefundRoute
+  '/legal/terms': typeof LegalTermsRoute
+  '/blog': typeof BlogIndexRoute
+  '/departments': typeof DepartmentsIndexRoute
+  '/doctors': typeof DoctorsIndexRoute
+  '/specializations': typeof SpecializationsIndexRoute
+  '/app/consultation/$id': typeof AppConsultationIdRoute
+  '/app/messages/$threadId': typeof AppMessagesThreadIdRoute
+  '/app/prescriptions/$id': typeof AppPrescriptionsIdRoute
+  '/app/messages': typeof AppMessagesIndexRoute
+  '/app/prescriptions': typeof AppPrescriptionsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/$': typeof SplatRoute
+  '/about': typeof AboutRoute
+  '/app': typeof AppRouteWithChildren
+  '/coming-soon': typeof ComingSoonRoute
+  '/contact': typeof ContactRoute
+  '/faqs': typeof FaqsRoute
+  '/maintenance': typeof MaintenanceRoute
+  '/online-consultation': typeof OnlineConsultationRoute
+  '/reviews': typeof ReviewsRoute
+  '/app/admin': typeof AppAdminRoute
+  '/app/doctor': typeof AppDoctorRoute
+  '/app/invoices': typeof AppInvoicesRoute
+  '/app/notifications': typeof AppNotificationsRoute
+  '/app/patient': typeof AppPatientRoute
+  '/app/payments': typeof AppPaymentsRoute
+  '/app/profile': typeof AppProfileRoute
+  '/app/reports': typeof AppReportsRoute
+  '/app/settings': typeof AppSettingsRoute
+  '/auth/forgot-password': typeof AuthForgotPasswordRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/auth/reset-password': typeof AuthResetPasswordRoute
+  '/auth/signup': typeof AuthSignupRoute
+  '/auth/verify-otp': typeof AuthVerifyOtpRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/book/$doctorId': typeof BookDoctorIdRoute
+  '/book/failed': typeof BookFailedRoute
+  '/book/success': typeof BookSuccessRoute
+  '/doctors/$id': typeof DoctorsIdRoute
+  '/doctors/search': typeof DoctorsSearchRoute
+  '/legal/privacy': typeof LegalPrivacyRoute
+  '/legal/refund': typeof LegalRefundRoute
+  '/legal/terms': typeof LegalTermsRoute
+  '/blog/': typeof BlogIndexRoute
+  '/departments/': typeof DepartmentsIndexRoute
+  '/doctors/': typeof DoctorsIndexRoute
+  '/specializations/': typeof SpecializationsIndexRoute
+  '/app/consultation/$id': typeof AppConsultationIdRoute
+  '/app/messages/$threadId': typeof AppMessagesThreadIdRoute
+  '/app/prescriptions/$id': typeof AppPrescriptionsIdRoute
+  '/app/messages/': typeof AppMessagesIndexRoute
+  '/app/prescriptions/': typeof AppPrescriptionsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/$'
+    | '/about'
+    | '/app'
+    | '/coming-soon'
+    | '/contact'
+    | '/faqs'
+    | '/maintenance'
+    | '/online-consultation'
+    | '/reviews'
+    | '/app/admin'
+    | '/app/doctor'
+    | '/app/invoices'
+    | '/app/notifications'
+    | '/app/patient'
+    | '/app/payments'
+    | '/app/profile'
+    | '/app/reports'
+    | '/app/settings'
+    | '/auth/forgot-password'
+    | '/auth/login'
+    | '/auth/reset-password'
+    | '/auth/signup'
+    | '/auth/verify-otp'
+    | '/blog/$slug'
+    | '/book/$doctorId'
+    | '/book/failed'
+    | '/book/success'
+    | '/doctors/$id'
+    | '/doctors/search'
+    | '/legal/privacy'
+    | '/legal/refund'
+    | '/legal/terms'
+    | '/blog/'
+    | '/departments/'
+    | '/doctors/'
+    | '/specializations/'
+    | '/app/consultation/$id'
+    | '/app/messages/$threadId'
+    | '/app/prescriptions/$id'
+    | '/app/messages/'
+    | '/app/prescriptions/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/$'
+    | '/about'
+    | '/app'
+    | '/coming-soon'
+    | '/contact'
+    | '/faqs'
+    | '/maintenance'
+    | '/online-consultation'
+    | '/reviews'
+    | '/app/admin'
+    | '/app/doctor'
+    | '/app/invoices'
+    | '/app/notifications'
+    | '/app/patient'
+    | '/app/payments'
+    | '/app/profile'
+    | '/app/reports'
+    | '/app/settings'
+    | '/auth/forgot-password'
+    | '/auth/login'
+    | '/auth/reset-password'
+    | '/auth/signup'
+    | '/auth/verify-otp'
+    | '/blog/$slug'
+    | '/book/$doctorId'
+    | '/book/failed'
+    | '/book/success'
+    | '/doctors/$id'
+    | '/doctors/search'
+    | '/legal/privacy'
+    | '/legal/refund'
+    | '/legal/terms'
+    | '/blog'
+    | '/departments'
+    | '/doctors'
+    | '/specializations'
+    | '/app/consultation/$id'
+    | '/app/messages/$threadId'
+    | '/app/prescriptions/$id'
+    | '/app/messages'
+    | '/app/prescriptions'
+  id:
+    | '__root__'
+    | '/'
+    | '/$'
+    | '/about'
+    | '/app'
+    | '/coming-soon'
+    | '/contact'
+    | '/faqs'
+    | '/maintenance'
+    | '/online-consultation'
+    | '/reviews'
+    | '/app/admin'
+    | '/app/doctor'
+    | '/app/invoices'
+    | '/app/notifications'
+    | '/app/patient'
+    | '/app/payments'
+    | '/app/profile'
+    | '/app/reports'
+    | '/app/settings'
+    | '/auth/forgot-password'
+    | '/auth/login'
+    | '/auth/reset-password'
+    | '/auth/signup'
+    | '/auth/verify-otp'
+    | '/blog/$slug'
+    | '/book/$doctorId'
+    | '/book/failed'
+    | '/book/success'
+    | '/doctors/$id'
+    | '/doctors/search'
+    | '/legal/privacy'
+    | '/legal/refund'
+    | '/legal/terms'
+    | '/blog/'
+    | '/departments/'
+    | '/doctors/'
+    | '/specializations/'
+    | '/app/consultation/$id'
+    | '/app/messages/$threadId'
+    | '/app/prescriptions/$id'
+    | '/app/messages/'
+    | '/app/prescriptions/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  SplatRoute: typeof SplatRoute
+  AboutRoute: typeof AboutRoute
+  AppRoute: typeof AppRouteWithChildren
+  ComingSoonRoute: typeof ComingSoonRoute
+  ContactRoute: typeof ContactRoute
+  FaqsRoute: typeof FaqsRoute
+  MaintenanceRoute: typeof MaintenanceRoute
+  OnlineConsultationRoute: typeof OnlineConsultationRoute
+  ReviewsRoute: typeof ReviewsRoute
+  AuthForgotPasswordRoute: typeof AuthForgotPasswordRoute
+  AuthLoginRoute: typeof AuthLoginRoute
+  AuthResetPasswordRoute: typeof AuthResetPasswordRoute
+  AuthSignupRoute: typeof AuthSignupRoute
+  AuthVerifyOtpRoute: typeof AuthVerifyOtpRoute
+  BlogSlugRoute: typeof BlogSlugRoute
+  BookDoctorIdRoute: typeof BookDoctorIdRoute
+  BookFailedRoute: typeof BookFailedRoute
+  BookSuccessRoute: typeof BookSuccessRoute
+  DoctorsIdRoute: typeof DoctorsIdRoute
+  DoctorsSearchRoute: typeof DoctorsSearchRoute
+  LegalPrivacyRoute: typeof LegalPrivacyRoute
+  LegalRefundRoute: typeof LegalRefundRoute
+  LegalTermsRoute: typeof LegalTermsRoute
+  BlogIndexRoute: typeof BlogIndexRoute
+  DepartmentsIndexRoute: typeof DepartmentsIndexRoute
+  DoctorsIndexRoute: typeof DoctorsIndexRoute
+  SpecializationsIndexRoute: typeof SpecializationsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/reviews': {
+      id: '/reviews'
+      path: '/reviews'
+      fullPath: '/reviews'
+      preLoaderRoute: typeof ReviewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/online-consultation': {
+      id: '/online-consultation'
+      path: '/online-consultation'
+      fullPath: '/online-consultation'
+      preLoaderRoute: typeof OnlineConsultationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/maintenance': {
+      id: '/maintenance'
+      path: '/maintenance'
+      fullPath: '/maintenance'
+      preLoaderRoute: typeof MaintenanceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faqs': {
+      id: '/faqs'
+      path: '/faqs'
+      fullPath: '/faqs'
+      preLoaderRoute: typeof FaqsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/coming-soon': {
+      id: '/coming-soon'
+      path: '/coming-soon'
+      fullPath: '/coming-soon'
+      preLoaderRoute: typeof ComingSoonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app': {
+      id: '/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/$': {
+      id: '/$'
+      path: '/$'
+      fullPath: '/$'
+      preLoaderRoute: typeof SplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +634,299 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/specializations/': {
+      id: '/specializations/'
+      path: '/specializations'
+      fullPath: '/specializations/'
+      preLoaderRoute: typeof SpecializationsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/doctors/': {
+      id: '/doctors/'
+      path: '/doctors'
+      fullPath: '/doctors/'
+      preLoaderRoute: typeof DoctorsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/departments/': {
+      id: '/departments/'
+      path: '/departments'
+      fullPath: '/departments/'
+      preLoaderRoute: typeof DepartmentsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal/terms': {
+      id: '/legal/terms'
+      path: '/legal/terms'
+      fullPath: '/legal/terms'
+      preLoaderRoute: typeof LegalTermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal/refund': {
+      id: '/legal/refund'
+      path: '/legal/refund'
+      fullPath: '/legal/refund'
+      preLoaderRoute: typeof LegalRefundRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal/privacy': {
+      id: '/legal/privacy'
+      path: '/legal/privacy'
+      fullPath: '/legal/privacy'
+      preLoaderRoute: typeof LegalPrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/doctors/search': {
+      id: '/doctors/search'
+      path: '/doctors/search'
+      fullPath: '/doctors/search'
+      preLoaderRoute: typeof DoctorsSearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/doctors/$id': {
+      id: '/doctors/$id'
+      path: '/doctors/$id'
+      fullPath: '/doctors/$id'
+      preLoaderRoute: typeof DoctorsIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/book/success': {
+      id: '/book/success'
+      path: '/book/success'
+      fullPath: '/book/success'
+      preLoaderRoute: typeof BookSuccessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/book/failed': {
+      id: '/book/failed'
+      path: '/book/failed'
+      fullPath: '/book/failed'
+      preLoaderRoute: typeof BookFailedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/book/$doctorId': {
+      id: '/book/$doctorId'
+      path: '/book/$doctorId'
+      fullPath: '/book/$doctorId'
+      preLoaderRoute: typeof BookDoctorIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/verify-otp': {
+      id: '/auth/verify-otp'
+      path: '/auth/verify-otp'
+      fullPath: '/auth/verify-otp'
+      preLoaderRoute: typeof AuthVerifyOtpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/signup': {
+      id: '/auth/signup'
+      path: '/auth/signup'
+      fullPath: '/auth/signup'
+      preLoaderRoute: typeof AuthSignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/reset-password': {
+      id: '/auth/reset-password'
+      path: '/auth/reset-password'
+      fullPath: '/auth/reset-password'
+      preLoaderRoute: typeof AuthResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/login': {
+      id: '/auth/login'
+      path: '/auth/login'
+      fullPath: '/auth/login'
+      preLoaderRoute: typeof AuthLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/forgot-password': {
+      id: '/auth/forgot-password'
+      path: '/auth/forgot-password'
+      fullPath: '/auth/forgot-password'
+      preLoaderRoute: typeof AuthForgotPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/settings': {
+      id: '/app/settings'
+      path: '/settings'
+      fullPath: '/app/settings'
+      preLoaderRoute: typeof AppSettingsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/reports': {
+      id: '/app/reports'
+      path: '/reports'
+      fullPath: '/app/reports'
+      preLoaderRoute: typeof AppReportsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/profile': {
+      id: '/app/profile'
+      path: '/profile'
+      fullPath: '/app/profile'
+      preLoaderRoute: typeof AppProfileRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/payments': {
+      id: '/app/payments'
+      path: '/payments'
+      fullPath: '/app/payments'
+      preLoaderRoute: typeof AppPaymentsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/patient': {
+      id: '/app/patient'
+      path: '/patient'
+      fullPath: '/app/patient'
+      preLoaderRoute: typeof AppPatientRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/notifications': {
+      id: '/app/notifications'
+      path: '/notifications'
+      fullPath: '/app/notifications'
+      preLoaderRoute: typeof AppNotificationsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/invoices': {
+      id: '/app/invoices'
+      path: '/invoices'
+      fullPath: '/app/invoices'
+      preLoaderRoute: typeof AppInvoicesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/doctor': {
+      id: '/app/doctor'
+      path: '/doctor'
+      fullPath: '/app/doctor'
+      preLoaderRoute: typeof AppDoctorRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/admin': {
+      id: '/app/admin'
+      path: '/admin'
+      fullPath: '/app/admin'
+      preLoaderRoute: typeof AppAdminRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/prescriptions/': {
+      id: '/app/prescriptions/'
+      path: '/prescriptions'
+      fullPath: '/app/prescriptions/'
+      preLoaderRoute: typeof AppPrescriptionsIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/messages/': {
+      id: '/app/messages/'
+      path: '/messages'
+      fullPath: '/app/messages/'
+      preLoaderRoute: typeof AppMessagesIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/prescriptions/$id': {
+      id: '/app/prescriptions/$id'
+      path: '/prescriptions/$id'
+      fullPath: '/app/prescriptions/$id'
+      preLoaderRoute: typeof AppPrescriptionsIdRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/messages/$threadId': {
+      id: '/app/messages/$threadId'
+      path: '/messages/$threadId'
+      fullPath: '/app/messages/$threadId'
+      preLoaderRoute: typeof AppMessagesThreadIdRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/consultation/$id': {
+      id: '/app/consultation/$id'
+      path: '/consultation/$id'
+      fullPath: '/app/consultation/$id'
+      preLoaderRoute: typeof AppConsultationIdRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
+interface AppRouteChildren {
+  AppAdminRoute: typeof AppAdminRoute
+  AppDoctorRoute: typeof AppDoctorRoute
+  AppInvoicesRoute: typeof AppInvoicesRoute
+  AppNotificationsRoute: typeof AppNotificationsRoute
+  AppPatientRoute: typeof AppPatientRoute
+  AppPaymentsRoute: typeof AppPaymentsRoute
+  AppProfileRoute: typeof AppProfileRoute
+  AppReportsRoute: typeof AppReportsRoute
+  AppSettingsRoute: typeof AppSettingsRoute
+  AppConsultationIdRoute: typeof AppConsultationIdRoute
+  AppMessagesThreadIdRoute: typeof AppMessagesThreadIdRoute
+  AppPrescriptionsIdRoute: typeof AppPrescriptionsIdRoute
+  AppMessagesIndexRoute: typeof AppMessagesIndexRoute
+  AppPrescriptionsIndexRoute: typeof AppPrescriptionsIndexRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppAdminRoute: AppAdminRoute,
+  AppDoctorRoute: AppDoctorRoute,
+  AppInvoicesRoute: AppInvoicesRoute,
+  AppNotificationsRoute: AppNotificationsRoute,
+  AppPatientRoute: AppPatientRoute,
+  AppPaymentsRoute: AppPaymentsRoute,
+  AppProfileRoute: AppProfileRoute,
+  AppReportsRoute: AppReportsRoute,
+  AppSettingsRoute: AppSettingsRoute,
+  AppConsultationIdRoute: AppConsultationIdRoute,
+  AppMessagesThreadIdRoute: AppMessagesThreadIdRoute,
+  AppPrescriptionsIdRoute: AppPrescriptionsIdRoute,
+  AppMessagesIndexRoute: AppMessagesIndexRoute,
+  AppPrescriptionsIndexRoute: AppPrescriptionsIndexRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  SplatRoute: SplatRoute,
+  AboutRoute: AboutRoute,
+  AppRoute: AppRouteWithChildren,
+  ComingSoonRoute: ComingSoonRoute,
+  ContactRoute: ContactRoute,
+  FaqsRoute: FaqsRoute,
+  MaintenanceRoute: MaintenanceRoute,
+  OnlineConsultationRoute: OnlineConsultationRoute,
+  ReviewsRoute: ReviewsRoute,
+  AuthForgotPasswordRoute: AuthForgotPasswordRoute,
+  AuthLoginRoute: AuthLoginRoute,
+  AuthResetPasswordRoute: AuthResetPasswordRoute,
+  AuthSignupRoute: AuthSignupRoute,
+  AuthVerifyOtpRoute: AuthVerifyOtpRoute,
+  BlogSlugRoute: BlogSlugRoute,
+  BookDoctorIdRoute: BookDoctorIdRoute,
+  BookFailedRoute: BookFailedRoute,
+  BookSuccessRoute: BookSuccessRoute,
+  DoctorsIdRoute: DoctorsIdRoute,
+  DoctorsSearchRoute: DoctorsSearchRoute,
+  LegalPrivacyRoute: LegalPrivacyRoute,
+  LegalRefundRoute: LegalRefundRoute,
+  LegalTermsRoute: LegalTermsRoute,
+  BlogIndexRoute: BlogIndexRoute,
+  DepartmentsIndexRoute: DepartmentsIndexRoute,
+  DoctorsIndexRoute: DoctorsIndexRoute,
+  SpecializationsIndexRoute: SpecializationsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
