@@ -11,9 +11,12 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ReviewsRouteImport } from './routes/reviews'
 import { Route as OnlineConsultationRouteImport } from './routes/online-consultation'
+import { Route as MaintenanceRouteImport } from './routes/maintenance'
 import { Route as FaqsRouteImport } from './routes/faqs'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as ComingSoonRouteImport } from './routes/coming-soon'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as SplatRouteImport } from './routes/$'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SpecializationsIndexRouteImport } from './routes/specializations.index'
 import { Route as DoctorsIndexRouteImport } from './routes/doctors.index'
@@ -24,6 +27,9 @@ import { Route as LegalRefundRouteImport } from './routes/legal.refund'
 import { Route as LegalPrivacyRouteImport } from './routes/legal.privacy'
 import { Route as DoctorsSearchRouteImport } from './routes/doctors.search'
 import { Route as DoctorsIdRouteImport } from './routes/doctors.$id'
+import { Route as BookSuccessRouteImport } from './routes/book.success'
+import { Route as BookFailedRouteImport } from './routes/book.failed'
+import { Route as BookDoctorIdRouteImport } from './routes/book.$doctorId'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as AuthVerifyOtpRouteImport } from './routes/auth.verify-otp'
 import { Route as AuthSignupRouteImport } from './routes/auth.signup'
@@ -41,6 +47,11 @@ const OnlineConsultationRoute = OnlineConsultationRouteImport.update({
   path: '/online-consultation',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MaintenanceRoute = MaintenanceRouteImport.update({
+  id: '/maintenance',
+  path: '/maintenance',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FaqsRoute = FaqsRouteImport.update({
   id: '/faqs',
   path: '/faqs',
@@ -51,9 +62,19 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ComingSoonRoute = ComingSoonRouteImport.update({
+  id: '/coming-soon',
+  path: '/coming-soon',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SplatRoute = SplatRouteImport.update({
+  id: '/$',
+  path: '/$',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -106,6 +127,21 @@ const DoctorsIdRoute = DoctorsIdRouteImport.update({
   path: '/doctors/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BookSuccessRoute = BookSuccessRouteImport.update({
+  id: '/book/success',
+  path: '/book/success',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BookFailedRoute = BookFailedRouteImport.update({
+  id: '/book/failed',
+  path: '/book/failed',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BookDoctorIdRoute = BookDoctorIdRouteImport.update({
+  id: '/book/$doctorId',
+  path: '/book/$doctorId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlogSlugRoute = BlogSlugRouteImport.update({
   id: '/blog/$slug',
   path: '/blog/$slug',
@@ -139,9 +175,12 @@ const AuthForgotPasswordRoute = AuthForgotPasswordRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/$': typeof SplatRoute
   '/about': typeof AboutRoute
+  '/coming-soon': typeof ComingSoonRoute
   '/contact': typeof ContactRoute
   '/faqs': typeof FaqsRoute
+  '/maintenance': typeof MaintenanceRoute
   '/online-consultation': typeof OnlineConsultationRoute
   '/reviews': typeof ReviewsRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
@@ -150,6 +189,9 @@ export interface FileRoutesByFullPath {
   '/auth/signup': typeof AuthSignupRoute
   '/auth/verify-otp': typeof AuthVerifyOtpRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/book/$doctorId': typeof BookDoctorIdRoute
+  '/book/failed': typeof BookFailedRoute
+  '/book/success': typeof BookSuccessRoute
   '/doctors/$id': typeof DoctorsIdRoute
   '/doctors/search': typeof DoctorsSearchRoute
   '/legal/privacy': typeof LegalPrivacyRoute
@@ -162,9 +204,12 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/$': typeof SplatRoute
   '/about': typeof AboutRoute
+  '/coming-soon': typeof ComingSoonRoute
   '/contact': typeof ContactRoute
   '/faqs': typeof FaqsRoute
+  '/maintenance': typeof MaintenanceRoute
   '/online-consultation': typeof OnlineConsultationRoute
   '/reviews': typeof ReviewsRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
@@ -173,6 +218,9 @@ export interface FileRoutesByTo {
   '/auth/signup': typeof AuthSignupRoute
   '/auth/verify-otp': typeof AuthVerifyOtpRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/book/$doctorId': typeof BookDoctorIdRoute
+  '/book/failed': typeof BookFailedRoute
+  '/book/success': typeof BookSuccessRoute
   '/doctors/$id': typeof DoctorsIdRoute
   '/doctors/search': typeof DoctorsSearchRoute
   '/legal/privacy': typeof LegalPrivacyRoute
@@ -186,9 +234,12 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/$': typeof SplatRoute
   '/about': typeof AboutRoute
+  '/coming-soon': typeof ComingSoonRoute
   '/contact': typeof ContactRoute
   '/faqs': typeof FaqsRoute
+  '/maintenance': typeof MaintenanceRoute
   '/online-consultation': typeof OnlineConsultationRoute
   '/reviews': typeof ReviewsRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
@@ -197,6 +248,9 @@ export interface FileRoutesById {
   '/auth/signup': typeof AuthSignupRoute
   '/auth/verify-otp': typeof AuthVerifyOtpRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/book/$doctorId': typeof BookDoctorIdRoute
+  '/book/failed': typeof BookFailedRoute
+  '/book/success': typeof BookSuccessRoute
   '/doctors/$id': typeof DoctorsIdRoute
   '/doctors/search': typeof DoctorsSearchRoute
   '/legal/privacy': typeof LegalPrivacyRoute
@@ -211,9 +265,12 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/$'
     | '/about'
+    | '/coming-soon'
     | '/contact'
     | '/faqs'
+    | '/maintenance'
     | '/online-consultation'
     | '/reviews'
     | '/auth/forgot-password'
@@ -222,6 +279,9 @@ export interface FileRouteTypes {
     | '/auth/signup'
     | '/auth/verify-otp'
     | '/blog/$slug'
+    | '/book/$doctorId'
+    | '/book/failed'
+    | '/book/success'
     | '/doctors/$id'
     | '/doctors/search'
     | '/legal/privacy'
@@ -234,9 +294,12 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/$'
     | '/about'
+    | '/coming-soon'
     | '/contact'
     | '/faqs'
+    | '/maintenance'
     | '/online-consultation'
     | '/reviews'
     | '/auth/forgot-password'
@@ -245,6 +308,9 @@ export interface FileRouteTypes {
     | '/auth/signup'
     | '/auth/verify-otp'
     | '/blog/$slug'
+    | '/book/$doctorId'
+    | '/book/failed'
+    | '/book/success'
     | '/doctors/$id'
     | '/doctors/search'
     | '/legal/privacy'
@@ -257,9 +323,12 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/$'
     | '/about'
+    | '/coming-soon'
     | '/contact'
     | '/faqs'
+    | '/maintenance'
     | '/online-consultation'
     | '/reviews'
     | '/auth/forgot-password'
@@ -268,6 +337,9 @@ export interface FileRouteTypes {
     | '/auth/signup'
     | '/auth/verify-otp'
     | '/blog/$slug'
+    | '/book/$doctorId'
+    | '/book/failed'
+    | '/book/success'
     | '/doctors/$id'
     | '/doctors/search'
     | '/legal/privacy'
@@ -281,9 +353,12 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  SplatRoute: typeof SplatRoute
   AboutRoute: typeof AboutRoute
+  ComingSoonRoute: typeof ComingSoonRoute
   ContactRoute: typeof ContactRoute
   FaqsRoute: typeof FaqsRoute
+  MaintenanceRoute: typeof MaintenanceRoute
   OnlineConsultationRoute: typeof OnlineConsultationRoute
   ReviewsRoute: typeof ReviewsRoute
   AuthForgotPasswordRoute: typeof AuthForgotPasswordRoute
@@ -292,6 +367,9 @@ export interface RootRouteChildren {
   AuthSignupRoute: typeof AuthSignupRoute
   AuthVerifyOtpRoute: typeof AuthVerifyOtpRoute
   BlogSlugRoute: typeof BlogSlugRoute
+  BookDoctorIdRoute: typeof BookDoctorIdRoute
+  BookFailedRoute: typeof BookFailedRoute
+  BookSuccessRoute: typeof BookSuccessRoute
   DoctorsIdRoute: typeof DoctorsIdRoute
   DoctorsSearchRoute: typeof DoctorsSearchRoute
   LegalPrivacyRoute: typeof LegalPrivacyRoute
@@ -319,6 +397,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OnlineConsultationRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/maintenance': {
+      id: '/maintenance'
+      path: '/maintenance'
+      fullPath: '/maintenance'
+      preLoaderRoute: typeof MaintenanceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/faqs': {
       id: '/faqs'
       path: '/faqs'
@@ -333,11 +418,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/coming-soon': {
+      id: '/coming-soon'
+      path: '/coming-soon'
+      fullPath: '/coming-soon'
+      preLoaderRoute: typeof ComingSoonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/$': {
+      id: '/$'
+      path: '/$'
+      fullPath: '/$'
+      preLoaderRoute: typeof SplatRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -410,6 +509,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DoctorsIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/book/success': {
+      id: '/book/success'
+      path: '/book/success'
+      fullPath: '/book/success'
+      preLoaderRoute: typeof BookSuccessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/book/failed': {
+      id: '/book/failed'
+      path: '/book/failed'
+      fullPath: '/book/failed'
+      preLoaderRoute: typeof BookFailedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/book/$doctorId': {
+      id: '/book/$doctorId'
+      path: '/book/$doctorId'
+      fullPath: '/book/$doctorId'
+      preLoaderRoute: typeof BookDoctorIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/$slug': {
       id: '/blog/$slug'
       path: '/blog/$slug'
@@ -457,9 +577,12 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  SplatRoute: SplatRoute,
   AboutRoute: AboutRoute,
+  ComingSoonRoute: ComingSoonRoute,
   ContactRoute: ContactRoute,
   FaqsRoute: FaqsRoute,
+  MaintenanceRoute: MaintenanceRoute,
   OnlineConsultationRoute: OnlineConsultationRoute,
   ReviewsRoute: ReviewsRoute,
   AuthForgotPasswordRoute: AuthForgotPasswordRoute,
@@ -468,6 +591,9 @@ const rootRouteChildren: RootRouteChildren = {
   AuthSignupRoute: AuthSignupRoute,
   AuthVerifyOtpRoute: AuthVerifyOtpRoute,
   BlogSlugRoute: BlogSlugRoute,
+  BookDoctorIdRoute: BookDoctorIdRoute,
+  BookFailedRoute: BookFailedRoute,
+  BookSuccessRoute: BookSuccessRoute,
   DoctorsIdRoute: DoctorsIdRoute,
   DoctorsSearchRoute: DoctorsSearchRoute,
   LegalPrivacyRoute: LegalPrivacyRoute,
