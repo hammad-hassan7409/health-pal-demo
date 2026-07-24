@@ -37,9 +37,20 @@ import { Route as AuthSignupRouteImport } from './routes/auth.signup'
 import { Route as AuthResetPasswordRouteImport } from './routes/auth.reset-password'
 import { Route as AuthLoginRouteImport } from './routes/auth.login'
 import { Route as AuthForgotPasswordRouteImport } from './routes/auth.forgot-password'
+import { Route as AppSettingsRouteImport } from './routes/app.settings'
+import { Route as AppReportsRouteImport } from './routes/app.reports'
+import { Route as AppProfileRouteImport } from './routes/app.profile'
+import { Route as AppPaymentsRouteImport } from './routes/app.payments'
 import { Route as AppPatientRouteImport } from './routes/app.patient'
+import { Route as AppNotificationsRouteImport } from './routes/app.notifications'
+import { Route as AppInvoicesRouteImport } from './routes/app.invoices'
 import { Route as AppDoctorRouteImport } from './routes/app.doctor'
 import { Route as AppAdminRouteImport } from './routes/app.admin'
+import { Route as AppPrescriptionsIndexRouteImport } from './routes/app.prescriptions.index'
+import { Route as AppMessagesIndexRouteImport } from './routes/app.messages.index'
+import { Route as AppPrescriptionsIdRouteImport } from './routes/app.prescriptions.$id'
+import { Route as AppMessagesThreadIdRouteImport } from './routes/app.messages.$threadId'
+import { Route as AppConsultationIdRouteImport } from './routes/app.consultation.$id'
 
 const ReviewsRoute = ReviewsRouteImport.update({
   id: '/reviews',
@@ -181,9 +192,39 @@ const AuthForgotPasswordRoute = AuthForgotPasswordRouteImport.update({
   path: '/auth/forgot-password',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppSettingsRoute = AppSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppReportsRoute = AppReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppProfileRoute = AppProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPaymentsRoute = AppPaymentsRouteImport.update({
+  id: '/payments',
+  path: '/payments',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppPatientRoute = AppPatientRouteImport.update({
   id: '/patient',
   path: '/patient',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppNotificationsRoute = AppNotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppInvoicesRoute = AppInvoicesRouteImport.update({
+  id: '/invoices',
+  path: '/invoices',
   getParentRoute: () => AppRoute,
 } as any)
 const AppDoctorRoute = AppDoctorRouteImport.update({
@@ -194,6 +235,31 @@ const AppDoctorRoute = AppDoctorRouteImport.update({
 const AppAdminRoute = AppAdminRouteImport.update({
   id: '/admin',
   path: '/admin',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPrescriptionsIndexRoute = AppPrescriptionsIndexRouteImport.update({
+  id: '/prescriptions/',
+  path: '/prescriptions/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppMessagesIndexRoute = AppMessagesIndexRouteImport.update({
+  id: '/messages/',
+  path: '/messages/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPrescriptionsIdRoute = AppPrescriptionsIdRouteImport.update({
+  id: '/prescriptions/$id',
+  path: '/prescriptions/$id',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppMessagesThreadIdRoute = AppMessagesThreadIdRouteImport.update({
+  id: '/messages/$threadId',
+  path: '/messages/$threadId',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppConsultationIdRoute = AppConsultationIdRouteImport.update({
+  id: '/consultation/$id',
+  path: '/consultation/$id',
   getParentRoute: () => AppRoute,
 } as any)
 
@@ -210,7 +276,13 @@ export interface FileRoutesByFullPath {
   '/reviews': typeof ReviewsRoute
   '/app/admin': typeof AppAdminRoute
   '/app/doctor': typeof AppDoctorRoute
+  '/app/invoices': typeof AppInvoicesRoute
+  '/app/notifications': typeof AppNotificationsRoute
   '/app/patient': typeof AppPatientRoute
+  '/app/payments': typeof AppPaymentsRoute
+  '/app/profile': typeof AppProfileRoute
+  '/app/reports': typeof AppReportsRoute
+  '/app/settings': typeof AppSettingsRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
@@ -229,6 +301,11 @@ export interface FileRoutesByFullPath {
   '/departments/': typeof DepartmentsIndexRoute
   '/doctors/': typeof DoctorsIndexRoute
   '/specializations/': typeof SpecializationsIndexRoute
+  '/app/consultation/$id': typeof AppConsultationIdRoute
+  '/app/messages/$threadId': typeof AppMessagesThreadIdRoute
+  '/app/prescriptions/$id': typeof AppPrescriptionsIdRoute
+  '/app/messages/': typeof AppMessagesIndexRoute
+  '/app/prescriptions/': typeof AppPrescriptionsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -243,7 +320,13 @@ export interface FileRoutesByTo {
   '/reviews': typeof ReviewsRoute
   '/app/admin': typeof AppAdminRoute
   '/app/doctor': typeof AppDoctorRoute
+  '/app/invoices': typeof AppInvoicesRoute
+  '/app/notifications': typeof AppNotificationsRoute
   '/app/patient': typeof AppPatientRoute
+  '/app/payments': typeof AppPaymentsRoute
+  '/app/profile': typeof AppProfileRoute
+  '/app/reports': typeof AppReportsRoute
+  '/app/settings': typeof AppSettingsRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
@@ -262,6 +345,11 @@ export interface FileRoutesByTo {
   '/departments': typeof DepartmentsIndexRoute
   '/doctors': typeof DoctorsIndexRoute
   '/specializations': typeof SpecializationsIndexRoute
+  '/app/consultation/$id': typeof AppConsultationIdRoute
+  '/app/messages/$threadId': typeof AppMessagesThreadIdRoute
+  '/app/prescriptions/$id': typeof AppPrescriptionsIdRoute
+  '/app/messages': typeof AppMessagesIndexRoute
+  '/app/prescriptions': typeof AppPrescriptionsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -277,7 +365,13 @@ export interface FileRoutesById {
   '/reviews': typeof ReviewsRoute
   '/app/admin': typeof AppAdminRoute
   '/app/doctor': typeof AppDoctorRoute
+  '/app/invoices': typeof AppInvoicesRoute
+  '/app/notifications': typeof AppNotificationsRoute
   '/app/patient': typeof AppPatientRoute
+  '/app/payments': typeof AppPaymentsRoute
+  '/app/profile': typeof AppProfileRoute
+  '/app/reports': typeof AppReportsRoute
+  '/app/settings': typeof AppSettingsRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
@@ -296,6 +390,11 @@ export interface FileRoutesById {
   '/departments/': typeof DepartmentsIndexRoute
   '/doctors/': typeof DoctorsIndexRoute
   '/specializations/': typeof SpecializationsIndexRoute
+  '/app/consultation/$id': typeof AppConsultationIdRoute
+  '/app/messages/$threadId': typeof AppMessagesThreadIdRoute
+  '/app/prescriptions/$id': typeof AppPrescriptionsIdRoute
+  '/app/messages/': typeof AppMessagesIndexRoute
+  '/app/prescriptions/': typeof AppPrescriptionsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -312,7 +411,13 @@ export interface FileRouteTypes {
     | '/reviews'
     | '/app/admin'
     | '/app/doctor'
+    | '/app/invoices'
+    | '/app/notifications'
     | '/app/patient'
+    | '/app/payments'
+    | '/app/profile'
+    | '/app/reports'
+    | '/app/settings'
     | '/auth/forgot-password'
     | '/auth/login'
     | '/auth/reset-password'
@@ -331,6 +436,11 @@ export interface FileRouteTypes {
     | '/departments/'
     | '/doctors/'
     | '/specializations/'
+    | '/app/consultation/$id'
+    | '/app/messages/$threadId'
+    | '/app/prescriptions/$id'
+    | '/app/messages/'
+    | '/app/prescriptions/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -345,7 +455,13 @@ export interface FileRouteTypes {
     | '/reviews'
     | '/app/admin'
     | '/app/doctor'
+    | '/app/invoices'
+    | '/app/notifications'
     | '/app/patient'
+    | '/app/payments'
+    | '/app/profile'
+    | '/app/reports'
+    | '/app/settings'
     | '/auth/forgot-password'
     | '/auth/login'
     | '/auth/reset-password'
@@ -364,6 +480,11 @@ export interface FileRouteTypes {
     | '/departments'
     | '/doctors'
     | '/specializations'
+    | '/app/consultation/$id'
+    | '/app/messages/$threadId'
+    | '/app/prescriptions/$id'
+    | '/app/messages'
+    | '/app/prescriptions'
   id:
     | '__root__'
     | '/'
@@ -378,7 +499,13 @@ export interface FileRouteTypes {
     | '/reviews'
     | '/app/admin'
     | '/app/doctor'
+    | '/app/invoices'
+    | '/app/notifications'
     | '/app/patient'
+    | '/app/payments'
+    | '/app/profile'
+    | '/app/reports'
+    | '/app/settings'
     | '/auth/forgot-password'
     | '/auth/login'
     | '/auth/reset-password'
@@ -397,6 +524,11 @@ export interface FileRouteTypes {
     | '/departments/'
     | '/doctors/'
     | '/specializations/'
+    | '/app/consultation/$id'
+    | '/app/messages/$threadId'
+    | '/app/prescriptions/$id'
+    | '/app/messages/'
+    | '/app/prescriptions/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -628,11 +760,53 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthForgotPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/app/settings': {
+      id: '/app/settings'
+      path: '/settings'
+      fullPath: '/app/settings'
+      preLoaderRoute: typeof AppSettingsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/reports': {
+      id: '/app/reports'
+      path: '/reports'
+      fullPath: '/app/reports'
+      preLoaderRoute: typeof AppReportsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/profile': {
+      id: '/app/profile'
+      path: '/profile'
+      fullPath: '/app/profile'
+      preLoaderRoute: typeof AppProfileRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/payments': {
+      id: '/app/payments'
+      path: '/payments'
+      fullPath: '/app/payments'
+      preLoaderRoute: typeof AppPaymentsRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/patient': {
       id: '/app/patient'
       path: '/patient'
       fullPath: '/app/patient'
       preLoaderRoute: typeof AppPatientRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/notifications': {
+      id: '/app/notifications'
+      path: '/notifications'
+      fullPath: '/app/notifications'
+      preLoaderRoute: typeof AppNotificationsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/invoices': {
+      id: '/app/invoices'
+      path: '/invoices'
+      fullPath: '/app/invoices'
+      preLoaderRoute: typeof AppInvoicesRouteImport
       parentRoute: typeof AppRoute
     }
     '/app/doctor': {
@@ -649,19 +823,76 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppAdminRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/prescriptions/': {
+      id: '/app/prescriptions/'
+      path: '/prescriptions'
+      fullPath: '/app/prescriptions/'
+      preLoaderRoute: typeof AppPrescriptionsIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/messages/': {
+      id: '/app/messages/'
+      path: '/messages'
+      fullPath: '/app/messages/'
+      preLoaderRoute: typeof AppMessagesIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/prescriptions/$id': {
+      id: '/app/prescriptions/$id'
+      path: '/prescriptions/$id'
+      fullPath: '/app/prescriptions/$id'
+      preLoaderRoute: typeof AppPrescriptionsIdRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/messages/$threadId': {
+      id: '/app/messages/$threadId'
+      path: '/messages/$threadId'
+      fullPath: '/app/messages/$threadId'
+      preLoaderRoute: typeof AppMessagesThreadIdRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/consultation/$id': {
+      id: '/app/consultation/$id'
+      path: '/consultation/$id'
+      fullPath: '/app/consultation/$id'
+      preLoaderRoute: typeof AppConsultationIdRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
 interface AppRouteChildren {
   AppAdminRoute: typeof AppAdminRoute
   AppDoctorRoute: typeof AppDoctorRoute
+  AppInvoicesRoute: typeof AppInvoicesRoute
+  AppNotificationsRoute: typeof AppNotificationsRoute
   AppPatientRoute: typeof AppPatientRoute
+  AppPaymentsRoute: typeof AppPaymentsRoute
+  AppProfileRoute: typeof AppProfileRoute
+  AppReportsRoute: typeof AppReportsRoute
+  AppSettingsRoute: typeof AppSettingsRoute
+  AppConsultationIdRoute: typeof AppConsultationIdRoute
+  AppMessagesThreadIdRoute: typeof AppMessagesThreadIdRoute
+  AppPrescriptionsIdRoute: typeof AppPrescriptionsIdRoute
+  AppMessagesIndexRoute: typeof AppMessagesIndexRoute
+  AppPrescriptionsIndexRoute: typeof AppPrescriptionsIndexRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
   AppAdminRoute: AppAdminRoute,
   AppDoctorRoute: AppDoctorRoute,
+  AppInvoicesRoute: AppInvoicesRoute,
+  AppNotificationsRoute: AppNotificationsRoute,
   AppPatientRoute: AppPatientRoute,
+  AppPaymentsRoute: AppPaymentsRoute,
+  AppProfileRoute: AppProfileRoute,
+  AppReportsRoute: AppReportsRoute,
+  AppSettingsRoute: AppSettingsRoute,
+  AppConsultationIdRoute: AppConsultationIdRoute,
+  AppMessagesThreadIdRoute: AppMessagesThreadIdRoute,
+  AppPrescriptionsIdRoute: AppPrescriptionsIdRoute,
+  AppMessagesIndexRoute: AppMessagesIndexRoute,
+  AppPrescriptionsIndexRoute: AppPrescriptionsIndexRoute,
 }
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
