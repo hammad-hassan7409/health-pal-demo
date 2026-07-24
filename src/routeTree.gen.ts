@@ -9,38 +9,233 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ReviewsRouteImport } from './routes/reviews'
+import { Route as OnlineConsultationRouteImport } from './routes/online-consultation'
+import { Route as FaqsRouteImport } from './routes/faqs'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SpecializationsIndexRouteImport } from './routes/specializations.index'
+import { Route as DoctorsIndexRouteImport } from './routes/doctors.index'
+import { Route as DepartmentsIndexRouteImport } from './routes/departments.index'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
+import { Route as DoctorsSearchRouteImport } from './routes/doctors.search'
+import { Route as DoctorsIdRouteImport } from './routes/doctors.$id'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 
+const ReviewsRoute = ReviewsRouteImport.update({
+  id: '/reviews',
+  path: '/reviews',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnlineConsultationRoute = OnlineConsultationRouteImport.update({
+  id: '/online-consultation',
+  path: '/online-consultation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqsRoute = FaqsRouteImport.update({
+  id: '/faqs',
+  path: '/faqs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SpecializationsIndexRoute = SpecializationsIndexRouteImport.update({
+  id: '/specializations/',
+  path: '/specializations/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DoctorsIndexRoute = DoctorsIndexRouteImport.update({
+  id: '/doctors/',
+  path: '/doctors/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DepartmentsIndexRoute = DepartmentsIndexRouteImport.update({
+  id: '/departments/',
+  path: '/departments/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DoctorsSearchRoute = DoctorsSearchRouteImport.update({
+  id: '/doctors/search',
+  path: '/doctors/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DoctorsIdRoute = DoctorsIdRouteImport.update({
+  id: '/doctors/$id',
+  path: '/doctors/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/faqs': typeof FaqsRoute
+  '/online-consultation': typeof OnlineConsultationRoute
+  '/reviews': typeof ReviewsRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/doctors/$id': typeof DoctorsIdRoute
+  '/doctors/search': typeof DoctorsSearchRoute
+  '/blog/': typeof BlogIndexRoute
+  '/departments/': typeof DepartmentsIndexRoute
+  '/doctors/': typeof DoctorsIndexRoute
+  '/specializations/': typeof SpecializationsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/faqs': typeof FaqsRoute
+  '/online-consultation': typeof OnlineConsultationRoute
+  '/reviews': typeof ReviewsRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/doctors/$id': typeof DoctorsIdRoute
+  '/doctors/search': typeof DoctorsSearchRoute
+  '/blog': typeof BlogIndexRoute
+  '/departments': typeof DepartmentsIndexRoute
+  '/doctors': typeof DoctorsIndexRoute
+  '/specializations': typeof SpecializationsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/faqs': typeof FaqsRoute
+  '/online-consultation': typeof OnlineConsultationRoute
+  '/reviews': typeof ReviewsRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/doctors/$id': typeof DoctorsIdRoute
+  '/doctors/search': typeof DoctorsSearchRoute
+  '/blog/': typeof BlogIndexRoute
+  '/departments/': typeof DepartmentsIndexRoute
+  '/doctors/': typeof DoctorsIndexRoute
+  '/specializations/': typeof SpecializationsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/faqs'
+    | '/online-consultation'
+    | '/reviews'
+    | '/blog/$slug'
+    | '/doctors/$id'
+    | '/doctors/search'
+    | '/blog/'
+    | '/departments/'
+    | '/doctors/'
+    | '/specializations/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/faqs'
+    | '/online-consultation'
+    | '/reviews'
+    | '/blog/$slug'
+    | '/doctors/$id'
+    | '/doctors/search'
+    | '/blog'
+    | '/departments'
+    | '/doctors'
+    | '/specializations'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/faqs'
+    | '/online-consultation'
+    | '/reviews'
+    | '/blog/$slug'
+    | '/doctors/$id'
+    | '/doctors/search'
+    | '/blog/'
+    | '/departments/'
+    | '/doctors/'
+    | '/specializations/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  ContactRoute: typeof ContactRoute
+  FaqsRoute: typeof FaqsRoute
+  OnlineConsultationRoute: typeof OnlineConsultationRoute
+  ReviewsRoute: typeof ReviewsRoute
+  BlogSlugRoute: typeof BlogSlugRoute
+  DoctorsIdRoute: typeof DoctorsIdRoute
+  DoctorsSearchRoute: typeof DoctorsSearchRoute
+  BlogIndexRoute: typeof BlogIndexRoute
+  DepartmentsIndexRoute: typeof DepartmentsIndexRoute
+  DoctorsIndexRoute: typeof DoctorsIndexRoute
+  SpecializationsIndexRoute: typeof SpecializationsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/reviews': {
+      id: '/reviews'
+      path: '/reviews'
+      fullPath: '/reviews'
+      preLoaderRoute: typeof ReviewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/online-consultation': {
+      id: '/online-consultation'
+      path: '/online-consultation'
+      fullPath: '/online-consultation'
+      preLoaderRoute: typeof OnlineConsultationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faqs': {
+      id: '/faqs'
+      path: '/faqs'
+      fullPath: '/faqs'
+      preLoaderRoute: typeof FaqsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +243,72 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/specializations/': {
+      id: '/specializations/'
+      path: '/specializations'
+      fullPath: '/specializations/'
+      preLoaderRoute: typeof SpecializationsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/doctors/': {
+      id: '/doctors/'
+      path: '/doctors'
+      fullPath: '/doctors/'
+      preLoaderRoute: typeof DoctorsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/departments/': {
+      id: '/departments/'
+      path: '/departments'
+      fullPath: '/departments/'
+      preLoaderRoute: typeof DepartmentsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/doctors/search': {
+      id: '/doctors/search'
+      path: '/doctors/search'
+      fullPath: '/doctors/search'
+      preLoaderRoute: typeof DoctorsSearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/doctors/$id': {
+      id: '/doctors/$id'
+      path: '/doctors/$id'
+      fullPath: '/doctors/$id'
+      preLoaderRoute: typeof DoctorsIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  ContactRoute: ContactRoute,
+  FaqsRoute: FaqsRoute,
+  OnlineConsultationRoute: OnlineConsultationRoute,
+  ReviewsRoute: ReviewsRoute,
+  BlogSlugRoute: BlogSlugRoute,
+  DoctorsIdRoute: DoctorsIdRoute,
+  DoctorsSearchRoute: DoctorsSearchRoute,
+  BlogIndexRoute: BlogIndexRoute,
+  DepartmentsIndexRoute: DepartmentsIndexRoute,
+  DoctorsIndexRoute: DoctorsIndexRoute,
+  SpecializationsIndexRoute: SpecializationsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
