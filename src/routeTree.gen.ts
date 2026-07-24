@@ -19,6 +19,9 @@ import { Route as SpecializationsIndexRouteImport } from './routes/specializatio
 import { Route as DoctorsIndexRouteImport } from './routes/doctors.index'
 import { Route as DepartmentsIndexRouteImport } from './routes/departments.index'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
+import { Route as LegalTermsRouteImport } from './routes/legal.terms'
+import { Route as LegalRefundRouteImport } from './routes/legal.refund'
+import { Route as LegalPrivacyRouteImport } from './routes/legal.privacy'
 import { Route as DoctorsSearchRouteImport } from './routes/doctors.search'
 import { Route as DoctorsIdRouteImport } from './routes/doctors.$id'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
@@ -73,6 +76,21 @@ const BlogIndexRoute = BlogIndexRouteImport.update({
   path: '/blog/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LegalTermsRoute = LegalTermsRouteImport.update({
+  id: '/legal/terms',
+  path: '/legal/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalRefundRoute = LegalRefundRouteImport.update({
+  id: '/legal/refund',
+  path: '/legal/refund',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalPrivacyRoute = LegalPrivacyRouteImport.update({
+  id: '/legal/privacy',
+  path: '/legal/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DoctorsSearchRoute = DoctorsSearchRouteImport.update({
   id: '/doctors/search',
   path: '/doctors/search',
@@ -99,6 +117,9 @@ export interface FileRoutesByFullPath {
   '/blog/$slug': typeof BlogSlugRoute
   '/doctors/$id': typeof DoctorsIdRoute
   '/doctors/search': typeof DoctorsSearchRoute
+  '/legal/privacy': typeof LegalPrivacyRoute
+  '/legal/refund': typeof LegalRefundRoute
+  '/legal/terms': typeof LegalTermsRoute
   '/blog/': typeof BlogIndexRoute
   '/departments/': typeof DepartmentsIndexRoute
   '/doctors/': typeof DoctorsIndexRoute
@@ -114,6 +135,9 @@ export interface FileRoutesByTo {
   '/blog/$slug': typeof BlogSlugRoute
   '/doctors/$id': typeof DoctorsIdRoute
   '/doctors/search': typeof DoctorsSearchRoute
+  '/legal/privacy': typeof LegalPrivacyRoute
+  '/legal/refund': typeof LegalRefundRoute
+  '/legal/terms': typeof LegalTermsRoute
   '/blog': typeof BlogIndexRoute
   '/departments': typeof DepartmentsIndexRoute
   '/doctors': typeof DoctorsIndexRoute
@@ -130,6 +154,9 @@ export interface FileRoutesById {
   '/blog/$slug': typeof BlogSlugRoute
   '/doctors/$id': typeof DoctorsIdRoute
   '/doctors/search': typeof DoctorsSearchRoute
+  '/legal/privacy': typeof LegalPrivacyRoute
+  '/legal/refund': typeof LegalRefundRoute
+  '/legal/terms': typeof LegalTermsRoute
   '/blog/': typeof BlogIndexRoute
   '/departments/': typeof DepartmentsIndexRoute
   '/doctors/': typeof DoctorsIndexRoute
@@ -147,6 +174,9 @@ export interface FileRouteTypes {
     | '/blog/$slug'
     | '/doctors/$id'
     | '/doctors/search'
+    | '/legal/privacy'
+    | '/legal/refund'
+    | '/legal/terms'
     | '/blog/'
     | '/departments/'
     | '/doctors/'
@@ -162,6 +192,9 @@ export interface FileRouteTypes {
     | '/blog/$slug'
     | '/doctors/$id'
     | '/doctors/search'
+    | '/legal/privacy'
+    | '/legal/refund'
+    | '/legal/terms'
     | '/blog'
     | '/departments'
     | '/doctors'
@@ -177,6 +210,9 @@ export interface FileRouteTypes {
     | '/blog/$slug'
     | '/doctors/$id'
     | '/doctors/search'
+    | '/legal/privacy'
+    | '/legal/refund'
+    | '/legal/terms'
     | '/blog/'
     | '/departments/'
     | '/doctors/'
@@ -193,6 +229,9 @@ export interface RootRouteChildren {
   BlogSlugRoute: typeof BlogSlugRoute
   DoctorsIdRoute: typeof DoctorsIdRoute
   DoctorsSearchRoute: typeof DoctorsSearchRoute
+  LegalPrivacyRoute: typeof LegalPrivacyRoute
+  LegalRefundRoute: typeof LegalRefundRoute
+  LegalTermsRoute: typeof LegalTermsRoute
   BlogIndexRoute: typeof BlogIndexRoute
   DepartmentsIndexRoute: typeof DepartmentsIndexRoute
   DoctorsIndexRoute: typeof DoctorsIndexRoute
@@ -271,6 +310,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/legal/terms': {
+      id: '/legal/terms'
+      path: '/legal/terms'
+      fullPath: '/legal/terms'
+      preLoaderRoute: typeof LegalTermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal/refund': {
+      id: '/legal/refund'
+      path: '/legal/refund'
+      fullPath: '/legal/refund'
+      preLoaderRoute: typeof LegalRefundRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal/privacy': {
+      id: '/legal/privacy'
+      path: '/legal/privacy'
+      fullPath: '/legal/privacy'
+      preLoaderRoute: typeof LegalPrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/doctors/search': {
       id: '/doctors/search'
       path: '/doctors/search'
@@ -305,6 +365,9 @@ const rootRouteChildren: RootRouteChildren = {
   BlogSlugRoute: BlogSlugRoute,
   DoctorsIdRoute: DoctorsIdRoute,
   DoctorsSearchRoute: DoctorsSearchRoute,
+  LegalPrivacyRoute: LegalPrivacyRoute,
+  LegalRefundRoute: LegalRefundRoute,
+  LegalTermsRoute: LegalTermsRoute,
   BlogIndexRoute: BlogIndexRoute,
   DepartmentsIndexRoute: DepartmentsIndexRoute,
   DoctorsIndexRoute: DoctorsIndexRoute,
