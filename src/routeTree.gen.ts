@@ -15,6 +15,7 @@ import { Route as MaintenanceRouteImport } from './routes/maintenance'
 import { Route as FaqsRouteImport } from './routes/faqs'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ComingSoonRouteImport } from './routes/coming-soon'
+import { Route as AppRouteImport } from './routes/app'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as SplatRouteImport } from './routes/$'
 import { Route as IndexRouteImport } from './routes/index'
@@ -36,6 +37,9 @@ import { Route as AuthSignupRouteImport } from './routes/auth.signup'
 import { Route as AuthResetPasswordRouteImport } from './routes/auth.reset-password'
 import { Route as AuthLoginRouteImport } from './routes/auth.login'
 import { Route as AuthForgotPasswordRouteImport } from './routes/auth.forgot-password'
+import { Route as AppPatientRouteImport } from './routes/app.patient'
+import { Route as AppDoctorRouteImport } from './routes/app.doctor'
+import { Route as AppAdminRouteImport } from './routes/app.admin'
 
 const ReviewsRoute = ReviewsRouteImport.update({
   id: '/reviews',
@@ -65,6 +69,11 @@ const ContactRoute = ContactRouteImport.update({
 const ComingSoonRoute = ComingSoonRouteImport.update({
   id: '/coming-soon',
   path: '/coming-soon',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppRoute = AppRouteImport.update({
+  id: '/app',
+  path: '/app',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -172,17 +181,36 @@ const AuthForgotPasswordRoute = AuthForgotPasswordRouteImport.update({
   path: '/auth/forgot-password',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppPatientRoute = AppPatientRouteImport.update({
+  id: '/patient',
+  path: '/patient',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDoctorRoute = AppDoctorRouteImport.update({
+  id: '/doctor',
+  path: '/doctor',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAdminRoute = AppAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$': typeof SplatRoute
   '/about': typeof AboutRoute
+  '/app': typeof AppRouteWithChildren
   '/coming-soon': typeof ComingSoonRoute
   '/contact': typeof ContactRoute
   '/faqs': typeof FaqsRoute
   '/maintenance': typeof MaintenanceRoute
   '/online-consultation': typeof OnlineConsultationRoute
   '/reviews': typeof ReviewsRoute
+  '/app/admin': typeof AppAdminRoute
+  '/app/doctor': typeof AppDoctorRoute
+  '/app/patient': typeof AppPatientRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
@@ -206,12 +234,16 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/$': typeof SplatRoute
   '/about': typeof AboutRoute
+  '/app': typeof AppRouteWithChildren
   '/coming-soon': typeof ComingSoonRoute
   '/contact': typeof ContactRoute
   '/faqs': typeof FaqsRoute
   '/maintenance': typeof MaintenanceRoute
   '/online-consultation': typeof OnlineConsultationRoute
   '/reviews': typeof ReviewsRoute
+  '/app/admin': typeof AppAdminRoute
+  '/app/doctor': typeof AppDoctorRoute
+  '/app/patient': typeof AppPatientRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
@@ -236,12 +268,16 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/$': typeof SplatRoute
   '/about': typeof AboutRoute
+  '/app': typeof AppRouteWithChildren
   '/coming-soon': typeof ComingSoonRoute
   '/contact': typeof ContactRoute
   '/faqs': typeof FaqsRoute
   '/maintenance': typeof MaintenanceRoute
   '/online-consultation': typeof OnlineConsultationRoute
   '/reviews': typeof ReviewsRoute
+  '/app/admin': typeof AppAdminRoute
+  '/app/doctor': typeof AppDoctorRoute
+  '/app/patient': typeof AppPatientRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
@@ -267,12 +303,16 @@ export interface FileRouteTypes {
     | '/'
     | '/$'
     | '/about'
+    | '/app'
     | '/coming-soon'
     | '/contact'
     | '/faqs'
     | '/maintenance'
     | '/online-consultation'
     | '/reviews'
+    | '/app/admin'
+    | '/app/doctor'
+    | '/app/patient'
     | '/auth/forgot-password'
     | '/auth/login'
     | '/auth/reset-password'
@@ -296,12 +336,16 @@ export interface FileRouteTypes {
     | '/'
     | '/$'
     | '/about'
+    | '/app'
     | '/coming-soon'
     | '/contact'
     | '/faqs'
     | '/maintenance'
     | '/online-consultation'
     | '/reviews'
+    | '/app/admin'
+    | '/app/doctor'
+    | '/app/patient'
     | '/auth/forgot-password'
     | '/auth/login'
     | '/auth/reset-password'
@@ -325,12 +369,16 @@ export interface FileRouteTypes {
     | '/'
     | '/$'
     | '/about'
+    | '/app'
     | '/coming-soon'
     | '/contact'
     | '/faqs'
     | '/maintenance'
     | '/online-consultation'
     | '/reviews'
+    | '/app/admin'
+    | '/app/doctor'
+    | '/app/patient'
     | '/auth/forgot-password'
     | '/auth/login'
     | '/auth/reset-password'
@@ -355,6 +403,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   SplatRoute: typeof SplatRoute
   AboutRoute: typeof AboutRoute
+  AppRoute: typeof AppRouteWithChildren
   ComingSoonRoute: typeof ComingSoonRoute
   ContactRoute: typeof ContactRoute
   FaqsRoute: typeof FaqsRoute
@@ -423,6 +472,13 @@ declare module '@tanstack/react-router' {
       path: '/coming-soon'
       fullPath: '/coming-soon'
       preLoaderRoute: typeof ComingSoonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app': {
+      id: '/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -572,13 +628,49 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthForgotPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/app/patient': {
+      id: '/app/patient'
+      path: '/patient'
+      fullPath: '/app/patient'
+      preLoaderRoute: typeof AppPatientRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/doctor': {
+      id: '/app/doctor'
+      path: '/doctor'
+      fullPath: '/app/doctor'
+      preLoaderRoute: typeof AppDoctorRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/admin': {
+      id: '/app/admin'
+      path: '/admin'
+      fullPath: '/app/admin'
+      preLoaderRoute: typeof AppAdminRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
+
+interface AppRouteChildren {
+  AppAdminRoute: typeof AppAdminRoute
+  AppDoctorRoute: typeof AppDoctorRoute
+  AppPatientRoute: typeof AppPatientRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppAdminRoute: AppAdminRoute,
+  AppDoctorRoute: AppDoctorRoute,
+  AppPatientRoute: AppPatientRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   SplatRoute: SplatRoute,
   AboutRoute: AboutRoute,
+  AppRoute: AppRouteWithChildren,
   ComingSoonRoute: ComingSoonRoute,
   ContactRoute: ContactRoute,
   FaqsRoute: FaqsRoute,
