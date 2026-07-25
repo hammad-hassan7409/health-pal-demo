@@ -1,9 +1,10 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { motion } from "motion/react";
 import { Calendar as CalendarIcon, ChevronLeft, ShieldCheck, Video, CreditCard, Wallet, Building2, Smartphone, Check, Lock } from "lucide-react";
-import { doctorsApi } from "@/lib/api";
+import { toast } from "sonner";
+import { doctorsApi, appointmentsApi } from "@/lib/api";
 import { PageContainer, LoadingState, ErrorState } from "@/components/shared/state";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -29,7 +30,6 @@ function BookPage() {
   const { doctorId } = Route.useParams();
   const nav = useNavigate();
   const doc = useQuery({ queryKey: ["doctor", doctorId], queryFn: () => doctorsApi.get(doctorId) });
-  const slots = useQuery({ queryKey: ["slots", doctorId], queryFn: () => doctorsApi.slots(doctorId, "today") });
 
   const [step, setStep] = useState(0);
   const [date, setDate] = useState<Date | undefined>(new Date());
@@ -37,19 +37,44 @@ function BookPage() {
   const [reason, setReason] = useState("");
   const [notes, setNotes] = useState("");
   const [method, setMethod] = useState("card");
-  const [processing, setProcessing] = useState(false);
+
+  const dateKey = date ? date.toISOString().slice(0, 10) : "today";
+  const slots = useQuery({
+    queryKey: ["slots", doctorId, dateKey],
+    queryFn: () => doctorsApi.slots(doctorId, dateKey),
+    enabled: !!date,
+  });
+
+  const booking = useMutation({
+    mutationFn: () => appointmentsApi.book({
+      doctorId,
+      doctorName: doc.data?.name,
+      doctorPhoto: doc.data?.photo,
+      specialization: doc.data?.specialization,
+      date: date?.toISOString(),
+      time: slot ?? undefined,
+      type: "video",
+      status: "pending",
+      reason,
+      fee: doc.data?.consultationFee,
+    }),
+    onSuccess: (res) => {
+      toast.success("Appointment booked", { description: `Confirmation #${res.id}` });
+      nav({ to: "/book/success" });
+    },
+    onError: () => {
+      toast.error("Payment failed", { description: "Please try a different method." });
+      nav({ to: "/book/failed" });
+    },
+  });
 
   if (doc.isLoading) return <PageContainer><LoadingState rows={2} /></PageContainer>;
   if (doc.error || !doc.data) return <PageContainer><ErrorState onRetry={() => doc.refetch()} /></PageContainer>;
   const d = doc.data;
   const canNext = [!!date && !!slot, reason.length >= 3, true, true][step];
+  const processing = booking.isPending;
 
-  const submit = async () => {
-    setProcessing(true);
-    await new Promise((r) => setTimeout(r, 900));
-    if (Math.random() > 0.05) nav({ to: "/book/success" });
-    else nav({ to: "/book/failed" });
-  };
+  const submit = () => booking.mutate();
 
   return (
     <PageContainer>
@@ -76,7 +101,7 @@ function BookPage() {
             <div>
               <h2 className="text-xl font-semibold">Pick a date and time</h2>
               <div className="mt-6 grid gap-8 md:grid-cols-2">
-                <div><Calendar mode="single" selected={date} onSelect={setDate} className="rounded-xl border border-border p-3" /></div>
+                <div><Calendar mode="single" selected={date} onSelect={(v) => { setDate(v); setSlot(null); }} disabled={{ before: new Date(new Date().setHours(0,0,0,0)) }} className="rounded-xl border border-border p-3 pointer-events-auto" /></div>
                 <div>
                   <p className="mb-3 text-sm font-medium">Available slots</p>
                   {slots.isLoading ? <p className="text-sm text-muted-foreground">Loading...</p> : (
