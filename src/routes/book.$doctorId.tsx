@@ -30,7 +30,6 @@ function BookPage() {
   const { doctorId } = Route.useParams();
   const nav = useNavigate();
   const doc = useQuery({ queryKey: ["doctor", doctorId], queryFn: () => doctorsApi.get(doctorId) });
-  const slots = useQuery({ queryKey: ["slots", doctorId], queryFn: () => doctorsApi.slots(doctorId, "today") });
 
   const [step, setStep] = useState(0);
   const [date, setDate] = useState<Date | undefined>(new Date());
@@ -38,19 +37,44 @@ function BookPage() {
   const [reason, setReason] = useState("");
   const [notes, setNotes] = useState("");
   const [method, setMethod] = useState("card");
-  const [processing, setProcessing] = useState(false);
+
+  const dateKey = date ? date.toISOString().slice(0, 10) : "today";
+  const slots = useQuery({
+    queryKey: ["slots", doctorId, dateKey],
+    queryFn: () => doctorsApi.slots(doctorId, dateKey),
+    enabled: !!date,
+  });
+
+  const booking = useMutation({
+    mutationFn: () => appointmentsApi.book({
+      doctorId,
+      doctorName: doc.data?.name,
+      doctorPhoto: doc.data?.photo,
+      specialization: doc.data?.specialization,
+      date: date?.toISOString(),
+      time: slot ?? undefined,
+      type: "video",
+      status: "pending",
+      reason,
+      fee: doc.data?.consultationFee,
+    }),
+    onSuccess: (res) => {
+      toast.success("Appointment booked", { description: `Confirmation #${res.id}` });
+      nav({ to: "/book/success" });
+    },
+    onError: () => {
+      toast.error("Payment failed", { description: "Please try a different method." });
+      nav({ to: "/book/failed" });
+    },
+  });
 
   if (doc.isLoading) return <PageContainer><LoadingState rows={2} /></PageContainer>;
   if (doc.error || !doc.data) return <PageContainer><ErrorState onRetry={() => doc.refetch()} /></PageContainer>;
   const d = doc.data;
   const canNext = [!!date && !!slot, reason.length >= 3, true, true][step];
+  const processing = booking.isPending;
 
-  const submit = async () => {
-    setProcessing(true);
-    await new Promise((r) => setTimeout(r, 900));
-    if (Math.random() > 0.05) nav({ to: "/book/success" });
-    else nav({ to: "/book/failed" });
-  };
+  const submit = () => booking.mutate();
 
   return (
     <PageContainer>
