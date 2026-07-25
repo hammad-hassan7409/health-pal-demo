@@ -60,7 +60,7 @@ function BookPage() {
     }),
     onSuccess: (res) => {
       toast.success("Appointment booked", { description: `Confirmation #${res.id}` });
-      nav({ to: "/book/success" });
+      nav({ to: "/book/success", search: { id: res.id } });
     },
     onError: () => {
       toast.error("Payment failed", { description: "Please try a different method." });

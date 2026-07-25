@@ -136,6 +136,12 @@ export interface NotificationItem {
   time: string;
   read: boolean;
   kind: "appointment" | "message" | "payment" | "system";
+  /** Who should see this notification. Omit for admin-only/system-wide. */
+  targetRole?: "patient" | "doctor" | "admin";
+  /** If targetRole is 'doctor', restrict to this doctor id. */
+  targetDoctorId?: string;
+  /** If targetRole is 'patient', restrict to this patient id. */
+  targetPatientId?: string;
 }
 
 export interface ChatThread {

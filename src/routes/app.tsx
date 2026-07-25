@@ -1,5 +1,6 @@
 import { Link, Outlet, useRouterState, useNavigate, createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { setViewer, viewerFromPath } from "@/lib/viewer";
 import {
   LayoutDashboard, Calendar, MessageSquare, FileText, Pill, CreditCard, Receipt,
   User, Settings as SettingsIcon, Bell, Video, Stethoscope, Menu, LogOut, Users, ShieldCheck,
@@ -85,6 +86,12 @@ function AppLayout() {
   const [open, setOpen] = useState(false);
   // If someone lands on exactly /app, send them to the patient dashboard.
   if (pathname === "/app") { nav({ to: "/app/patient", replace: true }); }
+  // Track current demo viewer so notifications & role-scoped data filter correctly.
+  useEffect(() => {
+    const v = viewerFromPath(pathname);
+    if (v) setViewer(v);
+  }, [pathname]);
+
 
   return (
     <div className="flex min-h-screen bg-surface/40">
