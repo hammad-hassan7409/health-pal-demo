@@ -1,9 +1,10 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { motion } from "motion/react";
 import { Calendar as CalendarIcon, ChevronLeft, ShieldCheck, Video, CreditCard, Wallet, Building2, Smartphone, Check, Lock } from "lucide-react";
-import { doctorsApi } from "@/lib/api";
+import { toast } from "sonner";
+import { doctorsApi, appointmentsApi } from "@/lib/api";
 import { PageContainer, LoadingState, ErrorState } from "@/components/shared/state";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
