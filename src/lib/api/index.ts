@@ -5,14 +5,23 @@ import type {
 } from "./types";
 import * as mock from "@/lib/mocks/data";
 
-const paginate = <T>(items: T[]): Paginated<T> => ({
-  count: items.length, next: null, previous: null, results: items,
-});
+const paginate = <T>(items: T[], page = 1, pageSize = 9): Paginated<T> => {
+  const start = (page - 1) * pageSize;
+  const results = items.slice(start, start + pageSize);
+  return {
+    count: items.length,
+    next: start + pageSize < items.length ? String(page + 1) : null,
+    previous: page > 1 ? String(page - 1) : null,
+    results,
+  };
+};
 
 // ============ Doctors ============
 export interface DoctorFilters {
   q?: string; department?: string; gender?: "male" | "female" | "any";
   minRating?: number; maxFee?: number; city?: string; online?: boolean;
+  minExperience?: number;
+  page?: number; pageSize?: number;
 }
 
 export const doctorsApi = {
@@ -28,7 +37,8 @@ export const doctorsApi = {
     if (filters.maxFee) items = items.filter((d) => d.consultationFee <= filters.maxFee!);
     if (filters.city) items = items.filter((d) => d.city === filters.city);
     if (filters.online) items = items.filter((d) => d.online);
-    return mockDelay(paginate(items));
+    if (filters.minExperience) items = items.filter((d) => d.experienceYears >= filters.minExperience!);
+    return mockDelay(paginate(items, filters.page ?? 1, filters.pageSize ?? 9));
   },
   get: (id: string) => {
     const d = mock.doctors.find((x) => x.id === id || x.slug === id);
@@ -41,6 +51,7 @@ export const doctorsApi = {
     return mockDelay(times.map((t, i) => ({ id: `s${i}`, time: t, available: i % 3 !== 0 })));
   },
 };
+
 
 // ============ Departments ============
 export const departmentsApi = {
