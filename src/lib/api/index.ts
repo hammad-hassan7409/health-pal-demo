@@ -66,7 +66,37 @@ export const appointmentsApi = {
     return mockDelay<Appointment[]>(items);
   },
   get: (id: string) => mockDelay<Appointment | undefined>(mock.appointments.find((a) => a.id === id)),
-  book: (payload: Partial<Appointment>) => mockDelay({ id: `a-${Date.now()}`, ...payload }, 600),
+  book: (payload: Partial<Appointment>) => {
+    const id = `MED-${Date.now().toString().slice(-6)}`;
+    const appt: Appointment = {
+      id,
+      doctorId: payload.doctorId ?? "",
+      doctorName: payload.doctorName ?? "",
+      doctorPhoto: payload.doctorPhoto ?? "",
+      specialization: payload.specialization ?? "",
+      patientId: payload.patientId ?? "p1",
+      patientName: payload.patientName ?? "Ali Raza",
+      date: payload.date ?? new Date().toISOString(),
+      time: payload.time ?? "",
+      type: payload.type ?? "video",
+      status: "upcoming",
+      reason: payload.reason ?? "",
+      fee: payload.fee ?? 0,
+    };
+    mock.appointments.push(appt);
+    // Notify ONLY the booked doctor — not other doctors, not other patients.
+    mock.notifications.unshift({
+      id: `n-${Date.now()}`,
+      title: "New patient booking",
+      body: `${appt.patientName} booked a ${appt.type} consultation on ${new Date(appt.date).toDateString()} at ${appt.time}.`,
+      time: "Just now",
+      read: false,
+      kind: "appointment",
+      targetRole: "doctor",
+      targetDoctorId: appt.doctorId,
+    });
+    return mockDelay(appt, 600);
+  },
   cancel: (id: string) => mockDelay({ id, status: "cancelled" }, 400),
 };
 
@@ -95,7 +125,27 @@ export const blogsApi = {
   get: (slug: string) => mockDelay<BlogPost | undefined>(mock.blogPosts.find((b) => b.slug === slug)),
 };
 export const reportsApi = { list: () => mockDelay<MedicalReport[]>(mock.medicalReports) };
-export const notificationsApi = { list: () => mockDelay<NotificationItem[]>(mock.notifications) };
+
+export interface NotificationFilter {
+  role?: "patient" | "doctor" | "admin";
+  doctorId?: string;
+  patientId?: string;
+}
+export const notificationsApi = {
+  list: (filter: NotificationFilter = {}) => {
+    let items = [...mock.notifications];
+    if (filter.role) {
+      items = items.filter((n) => {
+        if (!n.targetRole) return filter.role === "admin"; // untargeted -> admin only
+        if (n.targetRole !== filter.role) return false;
+        if (filter.role === "doctor" && filter.doctorId && n.targetDoctorId && n.targetDoctorId !== filter.doctorId) return false;
+        if (filter.role === "patient" && filter.patientId && n.targetPatientId && n.targetPatientId !== filter.patientId) return false;
+        return true;
+      });
+    }
+    return mockDelay<NotificationItem[]>(items);
+  },
+};
 export const chatApi = {
   threads: () => mockDelay<ChatThread[]>(mock.chatThreads),
   messages: (threadId: string) => mockDelay<ChatMessage[]>(mock.chatMessages[threadId] ?? []),
