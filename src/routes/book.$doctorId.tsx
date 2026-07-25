@@ -101,7 +101,7 @@ function BookPage() {
             <div>
               <h2 className="text-xl font-semibold">Pick a date and time</h2>
               <div className="mt-6 grid gap-8 md:grid-cols-2">
-                <div><Calendar mode="single" selected={date} onSelect={setDate} className="rounded-xl border border-border p-3" /></div>
+                <div><Calendar mode="single" selected={date} onSelect={(v) => { setDate(v); setSlot(null); }} disabled={{ before: new Date(new Date().setHours(0,0,0,0)) }} className="rounded-xl border border-border p-3 pointer-events-auto" /></div>
                 <div>
                   <p className="mb-3 text-sm font-medium">Available slots</p>
                   {slots.isLoading ? <p className="text-sm text-muted-foreground">Loading...</p> : (
